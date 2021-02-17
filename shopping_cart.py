@@ -48,3 +48,19 @@ while selected_id != "DONE":
         identifiers.append(selected_id)
 
 print("Shopping Cart Item Identifiers Include:", identifiers)
+
+matching_products = []
+total_price = 0
+
+for count in identifiers:
+    for product in products:
+        if int(product["id"]) == int(count):
+            matching_products.append(product) 
+
+total_price = 0
+
+for item in matching_products:
+    print("+", item["name"], "(" + to_usd(item["price"]) + ")")
+    total_price = total_price + item["price"]
+
+print("The Total Price is:", total_price)
