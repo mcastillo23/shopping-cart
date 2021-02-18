@@ -1,5 +1,7 @@
 # shopping_cart.py
 
+from datetime import datetime
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -67,7 +69,7 @@ print("---------------------------------")
 print("GREEN FOODS GROCERY")
 print("WWW.GREEN-FOODS-GROCERY.COM")
 print("---------------------------------")
-print("CHECKOUT AT: 2020-02-07 03:54 PM")
+print("CHECKOUT AT:", datetime.now().strftime("%Y-%m-%d %I:%M %p"))
 print("---------------------------------")
 print("SELECTED PRODUCTS:")
 
