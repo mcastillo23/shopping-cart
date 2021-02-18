@@ -42,12 +42,12 @@ def to_usd(my_price):
 identifiers = []
 selected_id = 0
 
-options = [item["id"] for item in products]
-options.append("DONE")
+valid_options = [item["id"] for item in products]
+valid_options.append("DONE")
 
 while selected_id != "DONE":
     selected_id = input("Please input a product identifier (1-20 are valid), or 'DONE' if there are no more items:")
-    if str(selected_id) not in str(options):
+    if str(selected_id) not in str(valid_options):
         print("Hey, are you sure that product identifier is correct? Please try again!")
     elif selected_id != "DONE":
         identifiers.append(selected_id)
@@ -79,9 +79,9 @@ tax = total_price*tax_rate
 total_with_tax = total_price + tax
 
 print("---------------------------------")
-print("SUBTOTAL:", total_price)
-print("TAX:", tax)
-print("Total:", total_with_tax)
+print("SUBTOTAL:", to_usd(total_price))
+print("TAX:", to_usd(tax))
+print("Total:", to_usd(total_with_tax))
 print("---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
