@@ -1,5 +1,7 @@
 # shopping_cart.py
 
+import os
+from dotenv import load_dotenv
 from datetime import datetime
 
 products = [
@@ -57,8 +59,7 @@ while selected_id != "DONE":
 #print("Shopping Cart Item Identifiers Include:", identifiers)
 
 matching_products = []
-total_price = 0
-tax_rate = 0.0875
+total_price = 0.0
 
 for count in identifiers:
     for product in products:
@@ -77,7 +78,10 @@ for item in matching_products:
     print("+", item["name"], "(" + to_usd(item["price"]) + ")")
     total_price = total_price + item["price"]
 
-tax = total_price*tax_rate
+load_dotenv()
+tax_rate = os.getenv("tax_rate", default = 0.0875)
+
+tax = total_price*float(tax_rate)
 total_with_tax = total_price + tax
 
 print("---------------------------------")
