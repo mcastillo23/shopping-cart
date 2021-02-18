@@ -47,20 +47,36 @@ while selected_id != "DONE":
     if selected_id != "DONE":
         identifiers.append(selected_id)
 
-print("Shopping Cart Item Identifiers Include:", identifiers)
+#print("Shopping Cart Item Identifiers Include:", identifiers)
 
 matching_products = []
 total_price = 0
+tax_rate = 0.0875
 
 for count in identifiers:
     for product in products:
         if int(product["id"]) == int(count):
             matching_products.append(product) 
 
-total_price = 0
+print("---------------------------------")
+print("GREEN FOODS GROCERY")
+print("WWW.GREEN-FOODS-GROCERY.COM")
+print("---------------------------------")
+print("CHECKOUT AT: 2020-02-07 03:54 PM")
+print("---------------------------------")
+print("SELECTED PRODUCTS:")
 
 for item in matching_products:
     print("+", item["name"], "(" + to_usd(item["price"]) + ")")
     total_price = total_price + item["price"]
 
-print("The Total Price is:", total_price)
+tax = total_price*tax_rate
+total_with_tax = total_price + tax
+
+print("---------------------------------")
+print("SUBTOTAL:", total_price)
+print("TAX:", tax)
+print("Total:", total_with_tax)
+print("---------------------------------")
+print("THANKS, SEE YOU AGAIN SOON!")
+print("---------------------------------")
