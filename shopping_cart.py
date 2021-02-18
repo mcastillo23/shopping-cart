@@ -42,9 +42,14 @@ def to_usd(my_price):
 identifiers = []
 selected_id = 0
 
+options = [item["id"] for item in products]
+options.append("DONE")
+
 while selected_id != "DONE":
     selected_id = input("Please input a product identifier (1-20 are valid), or 'DONE' if there are no more items:")
-    if selected_id != "DONE":
+    if str(selected_id) not in str(options):
+        print("Hey, are you sure that product identifier is correct? Please try again!")
+    elif selected_id != "DONE":
         identifiers.append(selected_id)
 
 #print("Shopping Cart Item Identifiers Include:", identifiers)
