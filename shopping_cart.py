@@ -96,31 +96,31 @@ print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
 
 
-SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
-SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
-SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
 
-template_data = {
+email_option = input("Would you like to receive your receipt by email (Yes or No)?")
+
+if email_option.lower() == "yes":
+    email_address = input("Please enter your email address:")
+    SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+    SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+    SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
+    template_data = {
     "total_price_usd": to_usd(total_with_tax),
     "human_friendly_timestamp": date.today().strftime("%B %d, %Y %I:%M %p"),
     "products": matching_products
-}
-
-client = SendGridAPIClient(SENDGRID_API_KEY)
-print("CLIENT:", type(client))
-
-message = Mail(from_email=SENDER_ADDRESS, to_emails=SENDER_ADDRESS)
-message.template_id = SENDGRID_TEMPLATE_ID
-message.dynamic_template_data = template_data
-print("MESSAGE:", type(message))
-
-try:
-    response = client.send(message)
-    print("RESPONSE:", type(response))
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
-
-except Exception as err:
-    print(type(err))
-    print(err)
+    }
+    client = SendGridAPIClient(SENDGRID_API_KEY)
+    print("CLIENT:", type(client))
+    message = Mail(from_email=SENDER_ADDRESS, to_emails=email_address)
+    message.template_id = SENDGRID_TEMPLATE_ID
+    message.dynamic_template_data = template_data
+    print("MESSAGE:", type(message))
+    try:
+        response = client.send(message)
+        print("RESPONSE:", type(response))
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as err:
+        print(type(err))
+        print(err)
