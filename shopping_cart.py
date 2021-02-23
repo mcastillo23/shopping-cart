@@ -44,7 +44,7 @@ def to_usd(my_price):
     return f"${my_price:,.2f}" #> $12,000.71
 
 
-# TODO: write some Python code here to produce the desired output
+#Python code to produce the desired output
 
 identifiers = []
 selected_id = 0
@@ -95,7 +95,7 @@ print("---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("---------------------------------")
 
-
+#Code to send receipt through email
 
 email_option = input("Would you like to receive your receipt by email (Yes or No)?")
 
